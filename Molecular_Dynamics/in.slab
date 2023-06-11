@@ -1,0 +1,77 @@
+variable        NSTEPS          equal 5000000
+variable        THERMO_FREQ     equal 4000
+variable        DUMP_FREQ       equal 4000
+variable        TEMP            equal 300.0000
+#variable       PRES            equal 1.000000
+variable        TAU_T           equal 0.100000
+#variable       TAU_P           equal 1.000000
+
+echo			screen
+
+units           metal
+boundary        p p p
+atom_style      atomic
+
+read_data		5500H2O_24H.data
+#read_restart	200000.comp
+
+neighbor        1.0 bin
+
+mass            1 1.008
+mass            2 15.999
+
+pair_style      deepmd frozen_model_compressed.pb 
+pair_coeff      * *
+
+# The following variables are to be modified
+variable Ne1 		equal 	1                   		# These 3 variables are for chunk pressure calculation.	Nevery = use input values every this many timesteps
+variable Nr1 		equal 	10000                		# Nrepeat = # of times to use input values for calculating averages
+variable Nf1 		equal 	10000               		# Nfreq = calculate averages every this many timesteps
+variable Ne2 		equal 	1                   		# These 3 variables are for bulk pressure calculation.	Nevery = use input values every this many timesteps
+variable Nr2 		equal 	10000                		# Nrepeat = # of times to use input values for calculating averages
+variable Nf2 		equal 	10000                		# Nfreq = calculate averages every this many timesteps
+variable LT 		equal 	2                    		# Thickness of the layer   
+variable Area 		equal 	lx*ly              		    # Tangential area     
+variable nL 		equal 	lz                   		# Normal box length  
+variable xPress 	equal 	c_thermo_press[1]  		    # Normal axis pressure     1 for x, 2 for y, 3 for z
+variable yPress 	equal 	c_thermo_press[2] 		    # Tangential axis pressure 1 for x, 2 for y, 3 for z 
+variable zPress 	equal 	c_thermo_press[3] 		    # Tangential axis pressure 1 for x, 2 for y, 3 for z
+
+# Do not change the following varaibles, units = metal
+variable A_in_m    equal    1e-10						# Angstrom in meter
+variable bar_in_Pa equal    1e5				    		# note: 1 Pa = 1 N/m^2
+variable N_in_mN   equal    1e3				    		# Newton in milliNewton
+variable convFac   equal    ${A_in_m}*${bar_in_Pa}*${N_in_mN}
+
+# CHUNK
+compute press all stress/atom NULL
+compute cutl all chunk/atom bin/1d z center ${LT} units box
+fix prechu all ave/chunk ${Ne1} ${Nr1} ${Nf1} cutl c_press[1] c_press[2] c_press[3] norm none file pressure.profile  # Output pressure of each chunk in Pa for surfacetension, sum v_stpr
+compute cutl2 all chunk/atom bin/1d z center ${LT} units box
+fix prechu2 all ave/chunk 1 1000000 1000000 cutl2 c_press[1] c_press[2] c_press[3] norm none file pressure2.profile
+
+# BULK PRESSURE and Evaluate and average surface tension in mN/m:
+variable st equal 0.5*${nL}*(v_zPress-0.5*(v_xPress+v_yPress))*${convFac}
+fix st  all ave/time ${Ne2} ${Nr2} ${Nf2} v_st file surfacetension.file
+fix st2 all ave/time 1 1000000 1000000 v_st file surfacetension2.file
+
+thermo_style    custom step temp pe ke etotal press v_st vol density lx ly lz xy xz yz
+thermo          ${THERMO_FREQ}
+
+velocity 		all create ${TEMP} 20220606 rot yes mom yes dist gaussian
+
+#fix            1 all npt temp ${TEMP} ${TEMP} ${TAU_T} iso ${PRES} ${PRES} ${TAU_P}
+fix             1 all nvt temp ${TEMP} ${TEMP} ${TAU_T}
+
+dump            slab0  all custom ${DUMP_FREQ} slab_4k.lammpstrj  id type x y z vx vy vz
+dump            slab1  all custom 40000        slab_4w.lammpstrj  id type x y z vx vy vz
+dump            slab2  all custom 400000       slab_40w.lammpstrj id type x y z vx vy vz
+
+restart			500000 restart.*.cont
+
+timestep        0.001
+#reset_timestep 200000
+run             ${NSTEPS}
+
+write_restart	*.comp
+write_data      *.data

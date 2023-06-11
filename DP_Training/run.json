@@ -1,0 +1,106 @@
+{
+    "model": {
+      "type_map":           ["H","O"],      
+	  "descriptor": {
+		"_comment":         "if type = se_a_tpe: can’t apply compression method while using atom type embedding",
+        "type":             "se_e2_a",
+		"_comment":         "sel: [16 32 32] means maximal number of neighbors = 16H 32O 32N",
+		"_comment":         "sel: auto:1.1 means automatically counts maximal number of neighbors*1.1",
+        "sel":              "auto:1.1",
+        "rcut_smth":        0.5,
+        "rcut":             6.0,
+        "neuron":           [25,50,100],
+		"activation_function": "tanh",
+        "resnet_dt":        false,
+		"_comment":         "axis_neuron: Size of the submatrix of G (embedding matrix)",
+        "axis_neuron":      16,
+		"seed":             20220521,
+	    "_comment":		    "descriptor that's all--------------------------------------------------------------"		
+      },
+      "fitting_net": {
+		"_comment":         "other types: dipole or polar",
+		"type":             "ener",
+        "neuron":           [240,240,240],
+		"activation_function": "tanh",
+        "resnet_dt":        true,
+		"seed":             20220521,
+	    "_comment":		    "fitting_net that's all-------------------------------------------------------------"		
+      },  
+    "_comment": " model that's all------------------------------------------------------------------------------"
+    },
+
+    "loss": {
+		"_comment": "loss = pref_e * loss_e + pref_f * loss_f + pref_v * loss_v",
+		"_comment": "pref_f(t) = start_pref_f * ( lr(t) / start_lr ) + limit_pref_f * ( 1 - lr(t) / start_lr )",
+        "start_pref_e":      0.02,
+        "limit_pref_e":      1.0,
+        "start_pref_f":      1000,
+        "limit_pref_f":      1.0,
+        "start_pref_v":      0.0,
+        "limit_pref_v":      0.0,
+	    "_comment": " loss that's all-----------------------------------------------------------------------------"
+    },
+
+    "learning_rate": {
+		"_comment": "lr(t) = start_lr * decay_rate ^ ( training step / decay_steps )",
+		"_comment": "decay_rate and decay_steps are automatically determined by start_lr, stop_lr and training step)",
+        "type":              "exp",
+        "start_lr":          1e-03,
+		"stop_lr":           1e-08,
+	    "_comment": " learning_rate that's all--------------------------------------------------------------------"
+    },
+
+    "training": {
+        "numb_steps":        10000000,
+		"seed":              20220521,
+        "disp_file":         "lcurve.out",
+        "disp_freq":         1000,
+        "numb_test":         10,
+        "save_freq":         10000,
+        "save_ckpt":         "model.ckpt",
+        "disp_training":     true,
+        "time_training":     true,
+        "profiling":         false,
+        "profiling_file":    "timeline.json",
+        "tensorboard":       false,
+		"tensorboard_log_dir":"log",
+		"tensorboard_freq":  1000,
+		"training_data": {
+	    "systems":		 [
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.000",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.001",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.002",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.003",
+
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/sys.H128O64",
+
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H126O64",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H127O64",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H129O64",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H130O64"
+		],
+	    "batch_size":	"auto",
+		"auto_prob": 	"prob_sys_size; 0:4:0.005; 4:5:0.495; 5:9:0.50",
+	    "_comment": " training_data that's all--------------------------------------------------------------------"
+		},
+		"validation_data":{
+	    "systems":		 [
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.000",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.001",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.002",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.003",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.004",
+			
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/init.000",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/init.001",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/init.002",
+			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/init.003"
+			],
+	    "batch_size":	"auto",
+		"_auto_prob": 	"prob_sys_size; 0:4:0.005; 4:5:0.495; 5:9:0.50",
+	    "numb_btch":	1,
+	    "_comment": " validation_data that's all------------------------------------------------------------------"
+		},	  
+		"_comment": " training that's all-------------------------------------------------------------------------"		
+    }
+}
