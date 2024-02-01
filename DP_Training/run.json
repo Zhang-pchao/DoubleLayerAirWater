@@ -67,17 +67,17 @@
 		"tensorboard_freq":  1000,
 		"training_data": {
 	    "systems":		 [
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.000",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.001",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.002",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.003",
+			"/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.000",
+			"/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.001",
+			"/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.002",
+			"/DatasetWaterionSCAN/slab_init_PBE2SCAN_2/data.003",
 
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/sys.H128O64",
+			"/DatasetWaterionSCAN/water_init_iter00to10/sys.H128O64",
 
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H126O64",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H127O64",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H129O64",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H130O64"
+			"/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H126O64",
+			"/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H127O64",
+			"/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H129O64",
+			"/DatasetWaterionSCAN/waterion_init_iter00to09/sys.H130O64"
 		],
 	    "batch_size":	"auto",
 		"auto_prob": 	"prob_sys_size; 0:4:0.005; 4:5:0.495; 5:9:0.50",
@@ -85,16 +85,16 @@
 		},
 		"validation_data":{
 	    "systems":		 [
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.000",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.001",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.002",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.003",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/water_init_iter00to10/init.004",
+			"/DatasetWaterionSCAN/water_init_iter00to10/init.000",
+			"/DatasetWaterionSCAN/water_init_iter00to10/init.001",
+			"/DatasetWaterionSCAN/water_init_iter00to10/init.002",
+			"/DatasetWaterionSCAN/water_init_iter00to10/init.003",
+			"/DatasetWaterionSCAN/water_init_iter00to10/init.004",
 			
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/init.000",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/init.001",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/init.002",
-			"/lustre/scratch/scratch/ucemfen/DPMD/slab/DatasetWaterionSCAN/waterion_init_iter00to09/init.003"
+			"/DatasetWaterionSCAN/waterion_init_iter00to09/init.000",
+			"/DatasetWaterionSCAN/waterion_init_iter00to09/init.001",
+			"/DatasetWaterionSCAN/waterion_init_iter00to09/init.002",
+			"/DatasetWaterionSCAN/waterion_init_iter00to09/init.003"
 			],
 	    "batch_size":	"auto",
 		"_auto_prob": 	"prob_sys_size; 0:4:0.005; 4:5:0.495; 5:9:0.50",
