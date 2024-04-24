@@ -6,6 +6,6 @@ Double-layer distribution of hydronium and hydroxide ions in the air-water inter
 
 # Dataset and model
 
-The dataset for training the DP model is uploaded to [AIS Square]() and [Google Drive](https://drive.google.com/drive/folders/1zvCP1M3pYGL3f9ChUUl8n3BHkmCoWi52?usp=drive_link).
+The dataset for training the DP model is uploaded to [AIS Square](https://www.aissquare.com/datasets/detail?pageType=datasets&name=SCAN_H2O_H3O_OH&id=243) and [Google Drive](https://drive.google.com/drive/folders/1zvCP1M3pYGL3f9ChUUl8n3BHkmCoWi52?usp=drive_link).
 
 The compressed DP model is uploaded to [AIS Square](https://www.aissquare.com/models/detail?pageType=models&name=SCAN_H2O_H3O_OH&id=242) and [Google Drive](https://drive.google.com/drive/folders/1zvCP1M3pYGL3f9ChUUl8n3BHkmCoWi52?usp=drive_link).
