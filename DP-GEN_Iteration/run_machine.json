@@ -1,0 +1,78 @@
+{
+  "train": [
+    {
+      "machine": {
+	    "machine_type": "slurm",
+        "hostname": "xxx",
+        "password": "xxx",
+        "port": 2,
+        "username": "xxx",
+        "work_path": "/to/your/path/DP/waterion/dpgen/tmp/train"
+      },
+      "resources": {
+        "numb_gpu": 1,
+		"module_list": ["anaconda3"],	
+		"source_list": ["activate dpmd_gpu_v2.1.0"],
+        "time_limit": "1001:00:00"
+      },
+      "command": "/to/your/path/anaconda3/envs/dpmd_gpu_v2.1.0/bin/dp",
+      "group_size": 1,
+	  "python_path": "/to/your/path/anaconda3/envs/dpmd_gpu_v2.1.0/bin/python3.9"
+    }
+  ],
+
+  "model_devi": [
+    {
+      "machine": {
+		"machine_type": "slurm",
+        "hostname": "xxx",
+        "password": "xxx",
+        "port": 2,
+        "username": "xxx",
+        "work_path": "/to/your/path/waterion/dpgen/tmp/model_devi"
+      },
+      "resources": {
+        "numb_gpu": 1,
+		"module_list": ["anaconda3"],	
+		"source_list": ["activate dpmd_gpu_v2.1.0"],
+        "time_limit": "1002:00:00"
+      },
+      "command": "/to/your/path/anaconda3/envs/dpmd_gpu_v2.1.0/bin/lmp",
+      "group_size": 7
+    }
+  ],
+
+  "fp": [
+    {
+      "machine": {
+		"machine_type": "pbs",
+        "hostname": "xxx",
+        "password": "xxx",
+        "port": 2,
+        "username": "xxx",
+        "work_path": "/to/your/path/waterion_fp"
+      },
+      "resources": {
+	    "cvasp": false,
+        "numb_node": 1,
+        "task_per_node": 24,
+		"partition": "normal3",
+		"exclude_list": [],
+        "allow_failure": true,
+        "ratio_failue": 0.05,
+        "with_mpi": true,
+		"module_list": [
+				"intel/parallel_studio"
+		],
+		"source_list": [
+		],
+        "time_limit": "1003:0:0"
+	    },
+      "command": "/to/your/path/vasp.5.4.4/vasp.5.4.4/bin/vasp_std",
+      "group_size": 375
+    }
+  ]
+}
+
+
+
