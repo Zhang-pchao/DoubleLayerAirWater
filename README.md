@@ -1,6 +1,6 @@
 # Paper Title
 
-[Double-layer distribution of hydronium and hydroxide ions in the air-water interface](https://pubs.acs.org/doi/10.1021/acsphyschemau.3c00076) ACS Phys. Chem Au 2024, 4, 4, 336–346 [ChemRxiv](https://chemrxiv.org/engage/chemrxiv/article-details/64a1f26aba3e99daef69917a)
+Double-layer distribution of hydronium and hydroxide ions in the air-water interface [ACS Phys. Chem Au 2024, 4, 4, 336–346](https://pubs.acs.org/doi/10.1021/acsphyschemau.3c00076) [ChemRxiv](https://chemrxiv.org/engage/chemrxiv/article-details/64a1f26aba3e99daef69917a)
 
 # Dataset and model
 
