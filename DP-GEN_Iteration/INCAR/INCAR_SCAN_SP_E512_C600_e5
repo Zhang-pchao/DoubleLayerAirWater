@@ -8,6 +8,7 @@ LASPH    = .TRUE.
 #ISTART  = 0                            # Read existing wavefunction; if there
 #ICHARG  = 2                            # Non-self-consistent: GGA/LDA band structures
 #ISPIN    = 2                            # spin polarized calculations (collinear) are performed
+# If the number of electrons is not compatible with the number derived from the valence and the number of atoms a homogeneous background charge is assumed.
 NELECT   = 512                          # number of valence electrons 
 LREAL    = A                            # Projection operators: automatic
 ENCUT    = 600                          # cutoff energy for the planewave basis set in eV
