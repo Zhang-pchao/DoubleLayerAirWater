@@ -5,6 +5,7 @@ LASPH  = .TRUE.
 #IVDW   =  12           (DFT-D3 method of method with BJ damping)
  
 # Global Parameters
+# If the number of electrons is not compatible with the number derived from the valence and the number of atoms a homogeneous background charge is assumed.
 NELECT   = 512             (64*8)
 # ISTART =  0            (Read existing wavefunction; if there)
 # ISPIN  =  1            (Spin non-polarised DFT)
