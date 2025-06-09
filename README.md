@@ -10,10 +10,7 @@ Double-layer distribution of hydronium and hydroxide ions in the air-water inter
 
 ```bibtex
 @article{Zhang_AcsPhysChemAu_2024_v4_p336,
-  title        = {
-    {Double--Layer Distribution of Hydronium and Hydroxide Ions in the
-    Air--Water Interface}
-  },
+  title        = {{Double--Layer Distribution of Hydronium and Hydroxide Ions in the Air--Water Interface}},
   author       = {Pengchao Zhang and Muye Feng and Xuefei Xu},
   year         = 2024,
   journal      = {Acs Phys. Chem. Au},
